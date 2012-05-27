@@ -1,0 +1,99 @@
+body { 
+	padding: 10px;
+	background: #fff url(../img/graph-istock.jpg) 0 0 repeat;
+}
+.container { 
+	padding: 30px !important;
+	background: #fff;
+	min-height: 500px;
+	padding: 10px;
+	border: 1px solid gray;
+}
+.hidden { 
+    display: none;	
+}
+h1 { 
+	text-shadow: 1px 1px #ccc;
+}
+h1 a { 
+	color: black;
+}
+h1 a:hover { 
+	text-decoration: none;
+}
+h1, h2, h3, p, span { 
+	 font-family: Baskerville, "Times New Roman", serif;
+}
+p { 
+	font-size: 16px;
+}
+h1 { 
+	font-size: 4em;
+	margin-bottom: 30px;
+}
+sup { 
+    margin-left: 6px;	
+font-size: 0.5em;
+}
+span.alpha { 
+    font-size: 2em;	
+    font-weight: bold;
+    margin-left: 6px;
+}
+#user-journey { 
+	margin-top: 20px;
+}
+/* Axes */
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+.axis text {
+	font-family: sans-serif;
+	font-size: 11px;
+}
+
+/* Tooltips */
+div.tooltip {
+  position: absolute;
+  width: 140px;
+  height: 60px;
+  padding: 8px;
+  background: white;
+  -moz-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  pointer-events: none;
+}
+#legend img { 
+	margin-right: 5px;
+}
+#graph-container { 
+    min-width: 300px;
+    font-weight: bold;
+position:relative;
+ overflow: visible;
+top: -30px;
+}
+#graph { 
+    overflow: visible;	
+    position: relative;
+}
+#y-axis-label { 
+  font-size: 0.75em; 
+  position: absolute; 
+  left: 0px;
+  top: 10px;
+}
+#x-axis-label { 
+  font-size: 0.75em; 
+  position: absolute; 
+}
+#legend { 
+  font-size: 1.2em; 
+  font-family: Baskerville, "Times New Roman", serif;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Funnel Plot Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Anna Powell-Smith">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="./css/plot.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="./js/html5.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="./img/favicon.ico">
+  </head>
+  <body>
+	<div class="container">
+		
+		<h1><a href="">Funnel Plot Generator<sup>alpha</sup></a></h1>
+	
+		<p id="intro">Funnel plots are a <strong>powerful, intuitive way to visualize uncertainty</strong> and avoid spurious league tables.</p>
+		
+		
+		<!-- <input id="get-started" type="button" class="btn btn-primary btn-info" value="Create a funnel plot now" style="margin-top: 20px"> -->
+		
+	
+		
+				<p id="ie-apology" class="hidden"><strong>Sorry, this doesn't work in your browser yet.</strong> If you have access to Firefox, Chrome or modern versions of Opera, it should work in those.</p>
+		
+		<noscript>
+		<strong>Sorry, this is a modern web application that only works if JavaScript is enabled.</strong>
+		</noscript>
+		
+		<div class="tabbable hidden" id="user-journey"> 
+		  <ul class="nav nav-tabs" id='tabs'>
+		    <li class="active"><a href="#tab1" data-toggle="tab"><h2>Upload your data</h2></a></li>
+		    <li><a href="#tab2" data-toggle="tab"><h2>View your chart</h2></a></li>
+		    <li><a href="#tab3" data-toggle="tab"><h2>Embed your chart</h2></a></li>
+		  </ul>
+		  <div class="tab-content">
+			<!-- Upload form and specify options -->
+		    <div class="tab-pane active" id="tab1">
+		      <p>Upload a CSV file to get started. Your file should have one, and exactly one, header row.</p>
+		
+		
+		<!-- File upload -->
+		<form class="form-horizontal">
+		<input type="file" name="thefile" id="thefile" class="input-file" />
+		</form>
+		<div class="row">
+		<div class="span12 hidden" id="file-options">
+		<p>Now specify which columns to use in for the x-axis and y-axis of your graph.</p>
+		<form class="form-horizontal" id="form-options">
+			<h3>X-axis: Population size</h3>
+			<p>This should be the overall population size for each row in your data.</p>
+			<div class="control-group">
+            <label class="control-label" for="select-population-col">Population column:</label>
+            <div class="controls">
+              <select id="select-population-col">
+              </select>
+            </div>
+          </div>
+			<h3>Y-axis: The indicator you're interested in</h3>
+			<p>This should be the indicator you care about. Note: currently, this tool only supports data about raw numbers, not percentages or change rates, and about events, not population members.</p>
+          <div class="control-group">
+			<label class="control-label" for="select-indicator-col">Indicator column:</label>
+            <div class="controls">
+              <select id="select-indicator-col">
+              </select>
+          </div>
+</div>
+			<h3>Labels: Describe your data</h3>
+			<p>And finally, you probably want to label each data point with a name, so that when your users mouseover the graph, they can tell which data point is which.</p>
+          <div class="control-group">
+            <label class="control-label" for="select-name-col">Name column:</label>
+            <div class="controls">
+              <select id="select-name-col">
+              </select>
+            </div>
+          </div>
+           <button class="btn btn-info btn-large">All set? Create your graph</button>
+		</form>		
+		</div>
+		<!-- <div class="span6"><div id="file-text" class="well hidden" style="max-height: 300px; overflow: scroll;"></div></div>​ -->
+	    </div>
+	
+		    </div>
+			<!-- Rendered graph -->
+		    <div class="tab-pane" id="tab2">
+			 <p id="graph-not-ready">Upload some CSV data to create your graph.</p>
+			
+			 <div id="graph" class="hidden">
+				
+
+
+			<div class="row">
+				<div class="span8">
+					<h3>Find a data point</h3>
+					<p>Mouseover data items to see details, or select an entry from the dropdown below.</p>
+					<label class="control-label" for="select-entry" style="display: inline !important"><strong>Find an individual entry: </strong></label>
+			      <select id="select-entry" style="display: inline !important"></select>
+				</div>
+				<div class="span4">
+				<div id="legend" class="well">
+					<img src="./img/99confidence.png" height="20" /> 99% confidence interval<br/>
+					<img src="./img/95confidence.png" height="20" /> 95% confidence interval<br/>
+					<img src="./img/mean.png" height="20" /> Mean
+				</div>
+				</div>
+			</div>
+				<div id="graph-container">
+					<div id="y-axis-label">Indicator</div>
+					<div id="x-axis-label">Population</div>
+				</div>
+
+			</div>
+			
+			<div class="row" style="margin-top: 10px"><div class="span12">
+				<div class="alert alert-error">
+			<p><strong>Beware! This tool is in alpha</strong> and has not been verified by a professional statistician - we recommend you use the charts it generates for demo purposes only. If a chart fails to render as you expect, please check you have selected the right columns, then contact me with a copy of your data - anna [at] darkgreener.com.</p>
+				</div>
+			</div></div>	
+			</div>
+			
+		     <!-- Embeddable code -->
+		    <div class="tab-pane" id="tab3">
+			<p id="embed-not-ready">Upload some CSV data to create your graph.</p>
+			<div id="embed" class="hidden">
+				<p>If you'd like to embed this graph in your own blog or website, then you can copy and paste the following code.</p>
+				<pre>
+				  Embeddable code coming soon!
+				</pre>
+			</div>
+		    </div>
+		
+		
+		
+		  </div>
+		</div>
+		
+
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+
+	</div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/d3.v2.js"></script>
+    <script src="./js/underscore.js"></script>
+    <script src="./js/underscore.math.js"></script>
+    <script src="./js/jquery.csv-0.6.js"></script>
+    <script src="./js/bootstrap-tab.js"></script>
+    <script src="./js/plot.js"></script>
+  </body>
+</html>
