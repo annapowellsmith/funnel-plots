@@ -21,12 +21,11 @@
 	
 		<p id="intro">Funnel plots are a <strong>powerful, intuitive way to visualize uncertainty</strong> and avoid spurious league tables.</p>
 		
-		
-		<!-- <input id="get-started" type="button" class="btn btn-primary btn-info" value="Create a funnel plot now" style="margin-top: 20px"> -->
-		
+	
+	<p>Read <a href="http://improving-visualisation.org/case-studies/id=3">more about how funnel plots work</a> and why they are important.</p>
 	
 		
-				<p id="ie-apology" class="hidden"><strong>Sorry, this doesn't work in your browser yet.</strong> If you have access to Firefox, Chrome or modern versions of Opera, it should work in those.</p>
+		<p id="ie-apology" class="hidden"><strong>Sorry, this doesn't work in your browser yet.</strong> If you have access to Firefox, Chrome or modern versions of Opera, it should work in those.</p>
 		
 		<noscript>
 		<strong>Sorry, this is a modern web application that only works if JavaScript is enabled.</strong>
@@ -41,8 +40,14 @@
 		  <div class="tab-content">
 			<!-- Upload form and specify options -->
 		    <div class="tab-pane active" id="tab1">
-		      <p>Upload a CSV file to get started. Your file should have one, and exactly one, header row.</p>
+		      <p>Upload a CSV file to get started. Some things to note:</p>
 		
+		 <ul>
+			<li>Your file should have one, and exactly one, header row.</li>
+			<li>You will need the following columns: sample size, indicator number, and item name.</li>
+			<li>Column order and naming doesn't matter, and you can have other columns too.</li>
+			<li>Currently, your data must be about <strong>event frequency</strong>, not <strong>people</strong> or <strong>rates</strong>, due to the way we calculate standard error.</li>
+		</ul>
 		
 		<!-- File upload -->
 		<form class="form-horizontal">
@@ -53,7 +58,7 @@
 		<p>Now specify which columns to use in for the x-axis and y-axis of your graph.</p>
 		<form class="form-horizontal" id="form-options">
 			<h3>X-axis: Population size</h3>
-			<p>This should be the overall population size for each row in your data.</p>
+			<p>The sample size for each item.</p>
 			<div class="control-group">
             <label class="control-label" for="select-population-col">Population column:</label>
             <div class="controls">
@@ -62,7 +67,7 @@
             </div>
           </div>
 			<h3>Y-axis: The indicator you're interested in</h3>
-			<p>This should be the indicator you care about. Note: currently, this tool only supports data about raw numbers, not percentages or change rates, and about events, not population members.</p>
+			<p>This should be the indicator you care about. <strong>Note: currently, this tool only supports data about raw numbers, not percentages, and about events, not populations or rates.</strong></p>
           <div class="control-group">
 			<label class="control-label" for="select-indicator-col">Indicator column:</label>
             <div class="controls">
@@ -95,6 +100,10 @@
 
 
 			<div class="row">
+				<div class="span12">
+				<p>This tool is in alpha! If your chart doesn't render as you expected, please first check that you're using the right columns. If it still doesn't work, please email me with a copy of your data - anna [at] darkgreener.com.</p>
+				</p>
+				</div>
 				<div class="span8">
 					<h3>Find a data point</h3>
 					<p>Mouseover data items to see details, or select an entry from the dropdown below.</p>
@@ -103,9 +112,9 @@
 				</div>
 				<div class="span4">
 				<div id="legend" class="well">
-					<img src="./img/99confidence.png" height="20" /> 99% confidence interval<br/>
-					<img src="./img/95confidence.png" height="20" /> 95% confidence interval<br/>
-					<img src="./img/mean.png" height="20" /> Mean
+					<img src="./img/99confidence.png" height="20" width="20" /> 99.8% control limits<br/>
+					<img src="./img/95confidence.png" height="20" width="20" /> 95% control limits<br/>
+					<img src="./img/mean.png" height="20" width="20" /> Mean
 				</div>
 				</div>
 			</div>
@@ -116,7 +125,7 @@
 
 			</div>
 			
-			<div class="row" style="margin-top: 10px"><div class="span12">
+			<div class="row" class="warning hidden" style="margin-top: 10px"><div class="span12">
 				<div class="alert alert-error">
 			<p><strong>Beware! This tool is in alpha</strong> and has not been verified by a professional statistician - we recommend you use the charts it generates for demo purposes only. If a chart fails to render as you expect, please check you have selected the right columns, then contact me with a copy of your data - anna [at] darkgreener.com.</p>
 				</div>
@@ -140,7 +149,7 @@
 		</div>
 		
 
-<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/annapowellsmith/funnel-plots"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 
 	</div>
@@ -148,7 +157,6 @@
     <script src="./js/d3.v2.js"></script>
     <script src="./js/underscore.js"></script>
     <script src="./js/underscore.math.js"></script>
-    <script src="./js/jquery.csv-0.6.js"></script>
     <script src="./js/bootstrap-tab.js"></script>
     <script src="./js/plot.js"></script>
   </body>
