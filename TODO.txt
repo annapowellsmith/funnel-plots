@@ -1,8 +1,6 @@
 Essentials
 ----------
 - Fix mouseover widths
-- Nicer colours for graph
-- Fix scrolling bug - graph width
 
 
 Very nice if
@@ -15,10 +13,3 @@ Good if
 
 - Add Flot version
 - Polyfill FileReader for IE and Safari: https://github.com/Jahdrien/FileReader (needs user to have Flash)
-
-
-Admin
------
-
-- Set up a Github repo
-- Write intro text for the page
