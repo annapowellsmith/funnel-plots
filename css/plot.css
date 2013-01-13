@@ -21,10 +21,10 @@ h1 a {
 h1 a:hover { 
 	text-decoration: none;
 }
-h1, h2, h3, p, span { 
+h1, h2, h3, p, span, li { 
 	 font-family: Baskerville, "Times New Roman", serif;
 }
-p { 
+p , li{ 
 	font-size: 16px;
 }
 h1 { 
@@ -42,6 +42,19 @@ span.alpha {
 }
 #user-journey { 
 	margin-top: 20px;
+}
+/* Confidence lines */
+path.confidence99 { 
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 5 5;
+  stroke: blue;
+}
+path.confidence95 { 
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 15 5;
+  stroke: blue;
 }
 /* Axes */
 .axis path,

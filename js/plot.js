@@ -19,15 +19,17 @@ $(document).ready(function() {
                     var str = e.target.result;
                     //$('#file-text').text(str).removeClass('hidden');
                     $('#file-options').removeClass('hidden');
-                    var csvArray = $.csv2Array(str);
+                    var csvArray = d3.csv.parseRows(str);
                     //console.log('csvArray', csvArray);
                     var titles = csvArray[0];
                     csvArray.splice(0,1);
                     var title_html = '';
                     _.each(titles,
                     function(item, i) {
+	                    console.log(item, i);
                         title_html += '<option value="' + i + '">' + item + '</option>';
                     });
+console.log(title_html);
                     $('#select-population-col, #select-indicator-col, #select-name-col').html(title_html);
 
                     $('#form-options').submit(function(e) {
@@ -164,47 +166,62 @@ $(document).ready(function() {
                         $('#y-axis-label').text(INDICATOR_NAME);
                         $('#x-axis-label').css('top',(h-10)+'px').css('left',(w-100)+'px');
 
-                        // Draw the confidence interval areas.
-                        var confidence3sd = d3.svg.area().
+                        // Draw the confidence interval lines.
+                        var confidence3sd_lower = d3.svg.line().
                         x(function(d) {
                             return xScale(d['sample_size']);
                         }).
-                        y0(function(d) {
+                        y(function(d) {
                             if (d['minus_3sd'] < 0.0) {
                                 return yScale(0);
                             } else {
-                                return yScale(d['minus_3sd']); // * 100);
+                                return yScale(d['minus_3sd']); 
                             }
                         }).
-                        y1(function(d) {
-                            return yScale(d['plus_3sd']); // * 100);
-                        }).
                         interpolate("linear");
-                        var confidence2sd = d3.svg.area().
+                        var confidence3sd_upper = d3.svg.line().
                         x(function(d) {
                             return xScale(d['sample_size']);
                         }).
-                        y0(function(d) {
+                        y(function(d) {
+                            return yScale(d['plus_3sd']); 
+                        }).
+                        interpolate("linear");
+                        var confidence2sd_lower = d3.svg.line().
+                        x(function(d) {
+                            return xScale(d['sample_size']);
+                        }).
+                        y(function(d) {
                             if (d['minus_2sd'] < 0.0) {
                                 return yScale(0);
                             } else {
-                                return yScale(d['minus_2sd']) // * 100);
+                                return yScale(d['minus_2sd']);
                             }
-                        }).
-                        y1(function(d) {
-                            return yScale(d['plus_2sd']); // * 100);
+                        });
+                        var confidence2sd_upper = d3.svg.line().
+                        x(function(d) {
+                            return xScale(d['sample_size']);
+                        }).                        
+                        y(function(d) {
+                            return yScale(d['plus_2sd']);
                         }).
                         interpolate("linear");
                         svg.append("svg:path").
-                        attr("d", confidence3sd(dataset)).
-                        attr("fill", "rgba(22, 156, 233, 0.2)");
+                        attr("d", confidence2sd_upper(dataset)).
+                        attr("class", "confidence95");  
                         svg.append("svg:path").
-                        attr("d", confidence2sd(dataset)).
-                        attr("fill", "rgba(22, 156, 233, 0.2)");
+                        attr("d", confidence2sd_lower(dataset)).
+                        attr("class", "confidence95");  
+                        svg.append("svg:path").
+                        attr("d", confidence3sd_upper(dataset)).
+                        attr("class", "confidence99");  
+                        svg.append("svg:path").
+                        attr("d", confidence3sd_lower(dataset)).
+                        attr("class", "confidence99");                      
                         $('#confidence-label').css('left',(w-100)+'px');
-
+                        
                         // Draw line to indicate mean.
-                        var meanLine = svg.append("svg:line")
+                        svg.append("svg:line")
                         .attr("x1", xScale(min_x))
                         .attr("y1", yScale(mean_incidence_rate)) // * 100))
                         .attr("x2", xScale(max_x))
