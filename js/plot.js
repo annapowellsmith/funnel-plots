@@ -258,11 +258,11 @@ console.log(title_html);
                         .attr("fill", "rgba(22, 68, 81, 0.6)")
                         .attr("cx",
                         function(d) {
-                            return xScale(d['sample_size']);
+                            return xScale(d['sample_size']) + Math.random() * 4 - 2;
                         })
                         .attr("cy",
                         function(d) {
-                            return yScale(d['ratio']) // * 100);
+                            return yScale(d['ratio']) + Math.random() * 4 - 2; // * 100);
                         })
                         .attr("name",
                         function(d) {
